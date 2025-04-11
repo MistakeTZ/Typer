@@ -10,8 +10,10 @@
 </head>
 <body>
 
-    <header>
-        <h2>Typer</h2>
-    </header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">Home</a>
+  <a class="navbar-brand" href="/login">Login</a>
+  <a class="navbar-brand" href="/trainer">Trainer</a>
+</nav>
 
     <main style="padding: 20px;">
