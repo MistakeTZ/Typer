@@ -1,7 +1,7 @@
 <?php
     require_once __DIR__ . '/../core/Database.php';
 
-    class ResultModel {
+    class UserModel {
         public static function addUser($username, $password) {
             $db = Database::getConnection();
             $pass_hash = password_hash($password, PASSWORD_DEFAULT);

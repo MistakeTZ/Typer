@@ -11,4 +11,8 @@
         require_once __DIR__ . '/../views/trainer.php';
     }
 
+    function showLogin() {
+        require_once __DIR__ . '/../views/login.php';
+    }
+
 ?>
