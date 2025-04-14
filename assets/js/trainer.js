@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 new_letter = word.querySelectorAll('.letter')[currentCharIndex];
             }
-            letter.classList.remove('caret', 'correct', 'incorrect');
-            new_letter.classList.add('caret');
+            new_letter.classList.remove('correct', 'incorrect');
+            new_letter.before(caret);
         }
 
         if (key.length === 1) { // игнорируем служебные клавиши
@@ -49,16 +49,20 @@ document.addEventListener('DOMContentLoaded', () => {
             currentCharIndex++;
 
             // Если слово закончено — переходим к следующему
-            if (currentCharIndex >= originalText[currentWordIndex].length) {
+            if (key === " ") {
                 currentCharIndex = 0;
                 currentWordIndex++;
                 new_letter = text.querySelectorAll('.word')[currentWordIndex].querySelectorAll('.letter')[0];
             }
             else {
+                if (currentCharIndex === originalText[currentWordIndex].length) {
+                    letter.after(caret);
+                    currentCharIndex--;
+                    return;
+                }
                 new_letter = word.querySelectorAll('.letter')[currentCharIndex];
             }
-            letter.classList.remove('caret');
-            new_letter.classList.add('caret');
+            new_letter.before(caret);
         }
     });
 });

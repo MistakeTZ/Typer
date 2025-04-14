@@ -17,7 +17,7 @@
     <h2>Тренировка</h2>
 
     <?php if (isset($text)): ?>
-        <div class="text" id="textarea"><?php
+        <div class="text" id="textarea"><span id="caret"></span><?php
             $words = explode(' ', $typing);
 
             foreach($words as $word) {
@@ -69,13 +69,13 @@
         color: red;
     }
 
-    .caret {
-        width: 0.6em;
+    #caret {
+        /* width: 0.6em;
         color: white;
-        text-align: center;
-        /* width: 2px;
+        text-align: center; */
+        width: 2px;
         vertical-align: bottom;
-        height: 1em; */
+        height: 1em;
         background-color: black;
         display: inline-block;
         margin-left: 1px;

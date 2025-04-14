@@ -8,7 +8,7 @@
         require_once __DIR__ . '/../models/TextModel.php';
 
         $text = [
-            "text" => "eiruyjkh sjhfulsehrg iuludfhgiulserygiuhfhguletiueriu yyeiru yeirugy iueufgh kludfh ;dgiu eyt kjjh"
+            "text" => "So can you realy be sure that everyone can be except, that I found all theese stuff here?"
         ];
         // $text = TextModel::getRandomText();
         require_once __DIR__ . '/../views/trainer.php';
