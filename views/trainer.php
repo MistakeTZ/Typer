@@ -17,19 +17,21 @@
     <h2>Тренировка</h2>
 
     <?php if (isset($text)): ?>
-        <div class="text" id="textarea"><span id="caret"></span><?php
+        <div class="text" id="textarea"><span id="caret">&nbsp</span><?php
             $words = explode(' ', $typing);
 
-            foreach($words as $word) {
+            for ($i = 0; $i < count($words); $i++) {
+                $word = $words[$i];
                 $new_word = '<span class="word">';
 
-                for($i = 0; $i < strlen($word); $i++) {
-                    $new_word = $new_word . '<span class="letter">' . $word[$i] . '</span>';
+                for($j = 0; $j < strlen($word); $j++) {
+                    $new_word = $new_word . '<span class="letter">' . $word[$j] . '</span>';
                 }
 
                 $new_word = $new_word . '</span>';
-                $typing = str_replace($word, $new_word, $typing);
+                $words[$i] = $new_word;
             }
+            $typing = implode(' ', $words);
             echo($typing);
             ?></div>
     <?php else: ?>
@@ -66,6 +68,12 @@
         white-space: pre-wrap;
         word-wrap: break-word;
         color: gray;
+    }
+
+    .word {
+        word-break: keep-all;
+        overflow-wrap: normal;
+        white-space: nowrap;
     }
 
     .correct {
