@@ -18,6 +18,7 @@
 
 <div class="container">
     <h1>История тренировок</h1>
+    <?php if (count($history) > 0): ?>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -40,6 +41,13 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php endif; ?>
+    <div class="buttons">
+        <a class="btn btn-primary" href="/trainer">Новая тренировка</a>
+        <?php if (!isset($_SESSION['user'])): ?>
+            <a class="btn btn-secondary" href="/login">Вход</a>
+        <?php endif; ?>
+    </div>
 </div>
 
 <style>
@@ -47,9 +55,14 @@
         text-align: center;
         margin-bottom: 40px;
     }
-    
+
     .container {
         margin-top: 50px;
+    }
+
+    .buttons {
+        text-align: center;
+        margin-top: 40px;
     }
 </style>
 

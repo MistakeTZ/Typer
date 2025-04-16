@@ -1,7 +1,7 @@
 <?php include 'layout.php'; ?>
 
 <div class="container">
-    <h1>Добро пожаловать в Тренажёр Набора Текста!</h1>
+    <h1>Добро пожаловать в Тренажёр набора текста!</h1>
     <p>Проверьте свою скорость и точность набора текста. Практикуйтесь и становитесь быстрее!</p>
 
     <div class="actions">
@@ -18,27 +18,9 @@
         font-family: Arial, sans-serif;
     }
 
-    .btn {
-        display: inline-block;
-        margin: 10px;
-        padding: 12px 20px;
-        font-size: 16px;
-        text-decoration: none;
-        border-radius: 6px;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
-        color: white;
-    }
-
-    .btn-secondary {
-        background-color: #6c757d;
-        color: white;
-    }
-
-    .btn:hover {
-        opacity: 0.9;
+    p {
+        margin-top: 20px;
+        font-size: 18px;
     }
 </style>
 

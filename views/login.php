@@ -32,7 +32,7 @@
                     header('Location: /');
                 }
                 else {
-                    echo "<p style='color: red'>Invalid username or password</p>";
+                    echo "<p style='color: red'>Неверное имя польлзователя или пароль</p>";
                 }
             }
         }
@@ -44,21 +44,21 @@
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Login</h3>
+                    <h3 class="card-title">Вход</h3>
                 </div>
                 <div class="card-body">
                     <form action="login" method="post">
                         <div class="form-group">
-                            <label for="username">Username</label>
+                            <label for="username">Имя пользователя</label>
                             <input type="text" class="form-control" id="username" name="username" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
+                            <label for="password">Пароль</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div style="margin-top: 20px">
-                            <button type="submit" name="login" class="btn btn-primary">Login</button>
-                            <button type="submit" name="register" class="btn btn-secondary">Register</button>
+                            <button type="submit" name="login" class="btn btn-primary">Войти</button>
+                            <button type="submit" name="register" class="btn btn-secondary">Зарегестрироваться</button>
                         </div>
                     </form>
                 </div>

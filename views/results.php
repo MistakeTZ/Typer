@@ -63,29 +63,6 @@
         margin: 10px 0;
         font-size: 1.2em;
     }
-
-    .btn {
-        display: inline-block;
-        margin: 10px;
-        padding: 12px 20px;
-        font-size: 16px;
-        text-decoration: none;
-        border-radius: 6px;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
-        color: white;
-    }
-
-    .btn-secondary {
-        background-color: #6c757d;
-        color: white;
-    }
-
-    .buttons a:hover {
-        background: #0056b3;
-    }
 </style>
 
 <?php include 'footer.php' ?>
