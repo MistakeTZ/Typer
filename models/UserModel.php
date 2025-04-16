@@ -28,6 +28,18 @@
             return false;
         }
 
+        public static function getUsername($userID) {
+            $db = Database::getConnection();
+            $sql = "SELECT username FROM users WHERE id = $userID LIMIT 1";
+            $result = mysqli_query($db, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                return $row['username'];
+            }
+            return false;
+        }
+
         public static function getHistory($userID, $offset = 0, $limit = 100) {
             $db = Database::getConnection();
             $sql = "SELECT * FROM history

@@ -2,6 +2,11 @@
     include 'layout.php';
 
     require_once __DIR__ . '/../models/UserModel.php';
+    session_start();
+
+    if (isset($_SESSION['user'])) {
+        $username = UserModel::getUsername($_SESSION['user']);
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -11,8 +16,6 @@
                     htmlspecialchars($_POST['username']),
                     htmlspecialchars($_POST['password'])
                 );
-                
-                session_start();
 
                 $_SESSION['user'] = $user;
                 header('Location: /');
@@ -26,8 +29,6 @@
                 );
 
                 if ($check) {
-                    session_start();
-
                     $_SESSION['user'] = $check;
                     header('Location: /');
                 }
@@ -36,10 +37,26 @@
                 }
             }
         }
+        elseif (isset($_POST['home'])) {
+            header('Location: /');
+        }
+        elseif (isset($_POST['logout'])) {
+            session_destroy();
+            header('Location: /login');
+        }
     }
 ?>
 
 <div class="container">
+    <?php if (isset($username)): ?>
+        <div class="success">
+            Вы вошли как: <strong><?= $username ?></strong>
+        </div>
+        <form method="post" action="login" class="logout">
+            <button type="submit" name="home" class="btn btn-primary">Домой</button>
+            <button type="submit" name="logout" class="btn btn-secondary">Выйти</button>
+        </form>
+    <?php else: ?>
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card">
@@ -65,6 +82,7 @@
             </div>
         </div>
     </div>
+    <?php endif; ?>
 </div>
 
 <style>
@@ -74,6 +92,17 @@
     .btn {
         min-width: 80px;
         margin-right: 20px;
+    }
+    .success {
+        margin-top: 20px;
+        color: green;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .logout {
+        margin-top: 20px;
+        text-align: center;
     }
 </style>
 
