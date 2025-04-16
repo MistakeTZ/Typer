@@ -12,7 +12,7 @@
                     htmlspecialchars($_POST['password'])
                 );
                 
-                start_session();
+                session_start();
 
                 $_SESSION['user'] = $user;
                 header('Location: /');
@@ -26,7 +26,7 @@
                 );
 
                 if ($check) {
-                    start_session();
+                    session_start();
 
                     $_SESSION['user'] = $user;
                     header('Location: /');
