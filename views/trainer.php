@@ -40,6 +40,8 @@
 <form id="resultForm" action="/result" method="POST" style="display: none;">
   <input type="hidden" name="time" id="time">
   <input type="hidden" name="correct" id="correct">
+  <input type="hidden" name="text" value="<?= $text['id'] ?>">
+  <input type="hidden" name="words" value="<?= count($words) ?>">
 </form>
 
 <script src="/assets/js/trainer.js"></script>
