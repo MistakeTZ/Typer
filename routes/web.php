@@ -18,6 +18,11 @@
             require_once __DIR__ . '/../controllers/TrainerController.php';
             showLogin();
             break;
+        
+        case '/result':
+            require_once __DIR__ . '/../controllers/TrainerController.php';
+            showResult();
+            break;
 
         // case '/history':
         //     require_once __DIR__ . '/../controllers/TrainerController.php';

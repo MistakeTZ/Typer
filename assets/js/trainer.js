@@ -1,17 +1,23 @@
 let currentWordIndex = 0;
 let currentCharIndex = 0;
+let timer = null;
+
+function onTypingComplete(time, correct) {
+    document.getElementById('time').value = time;
+    document.getElementById('correct').value = correct;
+    document.getElementById('resultForm').submit();
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     const text = document.getElementById('textarea');
-    const caret = document.getElementById('caret');
+    const caret = document.getElementById('caret');  
 
     document.addEventListener('keydown', function(event) {
         const word = text.querySelectorAll('.word')[currentWordIndex];
-        const letter = word.querySelectorAll('.letter')[currentCharIndex];
         let new_letter = null;
+        let after = false;
         const key = event.key;
 
-        const expectedChar = originalText[currentWordIndex]?.[currentCharIndex];
         console.log(`Нажата: ${key}`);
 
         if (key === 'Backspace') {
@@ -21,47 +27,77 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
                 currentWordIndex--;
-                currentCharIndex = originalText[currentWordIndex].length - 1;
+                currentCharIndex = originalText[currentWordIndex].length;
 
                 new_letter = text.querySelectorAll('.word')[
-                    currentWordIndex].querySelectorAll('.letter')[currentCharIndex];
+                    currentWordIndex].querySelectorAll('.letter')[currentCharIndex - 1];
+                after = true;
             }
             else {
                 currentCharIndex--;
 
                 new_letter = word.querySelectorAll('.letter')[currentCharIndex];
+                new_letter.classList.remove('correct', 'incorrect');
             }
-            new_letter.classList.remove('correct', 'incorrect');
-            new_letter.before(caret);
         }
 
-        if (key.length === 1) { // игнорируем служебные клавиши
-            console.log(`Ожидалась: ${expectedChar}`);
-
-            if (key === expectedChar) {
-                // Верно
-                letter.classList.add('correct');
-            } else {
-                // Ошибка
-                console.log('❌ Ошибка');
-                letter.classList.add('incorrect');
-            }
-            currentCharIndex++;
-
-            // Если слово закончено — переходим к следующему
+        else if (key.length === 1) { // игнорируем служебные клавиши
             if (key === " ") {
+
+                if (currentCharIndex !== originalText[currentWordIndex].length) {
+                    word.querySelectorAll('.letter')[currentCharIndex].classList.add('incorrect');
+                }
+
                 currentCharIndex = 0;
                 currentWordIndex++;
                 new_letter = text.querySelectorAll('.word')[currentWordIndex].querySelectorAll('.letter')[0];
             }
             else {
                 if (currentCharIndex === originalText[currentWordIndex].length) {
-                    letter.after(caret);
-                    currentCharIndex--;
                     return;
                 }
-                new_letter = word.querySelectorAll('.letter')[currentCharIndex];
+
+                const expectedChar = originalText[currentWordIndex]?.[currentCharIndex];
+                const letter = word.querySelectorAll('.letter')[currentCharIndex];
+
+                console.log(`Ожидалась: ${expectedChar}`);
+                if (currentCharIndex === 0 && currentWordIndex === 0) {
+                    timer = Date.now();
+                }
+
+                if (key === expectedChar) {
+                    // Верно
+                    letter.classList.add('correct');
+                } else {
+                    // Ошибка
+                    console.log('❌ Ошибка');
+                    letter.classList.add('incorrect');
+                }
+                currentCharIndex++;
+
+                if (currentCharIndex === originalText[currentWordIndex].length) {
+                    if (currentWordIndex === originalText.length - 1) {
+                        const time = (Date.now() - timer) / 1000;
+                        const correct = text.querySelectorAll('.correct').length;
+                        onTypingComplete(time, correct);
+                        return;
+                    }
+
+                    after = true;
+                    new_letter = word.querySelectorAll('.letter')[currentCharIndex - 1];
+                }
+                else {
+                    new_letter = word.querySelectorAll('.letter')[currentCharIndex];
+                }
             }
+        }
+
+        if (new_letter === null) return;
+
+        if (after) {
+            new_letter.after(caret);
+        }
+        else {
             new_letter.before(caret);
         }
     });

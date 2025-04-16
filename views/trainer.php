@@ -37,6 +37,11 @@
     <?php endif; ?>
 </div>
 
+<form id="resultForm" action="/result" method="POST" style="display: none;">
+  <input type="hidden" name="time" id="time">
+  <input type="hidden" name="correct" id="correct">
+</form>
+
 <script src="/assets/js/trainer.js"></script>
 
 <style>

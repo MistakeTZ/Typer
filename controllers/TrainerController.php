@@ -18,4 +18,8 @@
         require_once __DIR__ . '/../views/login.php';
     }
 
+    function showResult() {
+        require_once __DIR__ . '/../views/results.php';
+    }
+
 ?>
