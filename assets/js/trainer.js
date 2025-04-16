@@ -19,8 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let after = false;
         const key = event.key;
 
-        console.log(`Нажата: ${key}`);
-
         if (key === 'Backspace') {
 
             if (currentCharIndex === 0) {
@@ -61,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const expectedChar = originalText[currentWordIndex]?.[currentCharIndex];
                 const letter = word.querySelectorAll('.letter')[currentCharIndex];
 
-                console.log(`Ожидалась: ${expectedChar}`);
                 if (currentCharIndex === 0 && currentWordIndex === 0) {
                     timer = Date.now();
                 }
@@ -70,8 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Верно
                     letter.classList.add('correct');
                 } else {
-                    // Ошибка
-                    console.log('❌ Ошибка');
                     letter.classList.add('incorrect');
                 }
                 currentCharIndex++;
