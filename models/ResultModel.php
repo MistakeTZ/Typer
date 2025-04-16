@@ -2,10 +2,10 @@
     require_once __DIR__ . '/../core/Database.php';
 
     class ResultModel {
-        public static function saveResult($user, $text, $speed, $errors) {
+        public static function saveResult($user, $text, $time, $speed, $errors, $length) {
             $db = Database::getConnection();
-            $sql = "INSERT INTO history (user, text, speed, errors)
-                    VALUES ($user, $text, $speed, $errors)";
+            $sql = "INSERT INTO history (user, text, time, speed, errors, length)
+                    VALUES ($user, $text, $time, $speed, $errors, $length)";
 
             mysqli_query($db, $sql);
             return mysqli_insert_id($db);

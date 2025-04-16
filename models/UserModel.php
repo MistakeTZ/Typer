@@ -27,5 +27,16 @@
             }
             return false;
         }
+
+        public static function getHistory($userID, $offset = 0, $limit = 100) {
+            $db = Database::getConnection();
+            $sql = "SELECT * FROM history
+                    WHERE user = $userID
+                    ORDER BY time DESC
+                    LIMIT $offset, $limit";
+            
+            $result = mysqli_query($db, $sql);
+            return mysqli_fetch_all($result, MYSQLI_ASSOC);
+        }
     }
 ?>

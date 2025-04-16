@@ -24,10 +24,10 @@
             showResult();
             break;
 
-        // case '/history':
-        //     require_once __DIR__ . '/../controllers/TrainerController.php';
-        //     showHistory();
-        //     break;
+        case '/history':
+            require_once __DIR__ . '/../controllers/TrainerController.php';
+            showHistory();
+            break;
 
         default:
             http_response_code(404);

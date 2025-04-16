@@ -16,7 +16,7 @@
         session_start();
         if (isset($_SESSION['user'])) {
             require_once __DIR__ . '/../models/ResultModel.php';
-            ResultModel::saveResult($_SESSION['user'], $textId, $speed, $errors);
+            ResultModel::saveResult($_SESSION['user'], $textId, $time, $speed, $errors, $text["length"]);
         }
     }
     else {

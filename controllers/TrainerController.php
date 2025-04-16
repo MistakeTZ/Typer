@@ -22,4 +22,8 @@
         require_once __DIR__ . '/../views/results.php';
     }
 
+    function showHistory() {
+        require_once __DIR__ . '/../views/history.php';
+    }
+
 ?>
