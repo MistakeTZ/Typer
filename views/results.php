@@ -1,19 +1,26 @@
 <?php include 'layout.php';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Получаем данные из POST-запроса
-        $time = $_POST['time'] ?? '—';
-        $textId = $_POST['text'] ?? '—';
-        $words = $_POST['words'] ?? '—';
-        $correct = $_POST['correct'] ?? '—';
+        $time = $_POST['time'];
+        $textId = $_POST['text'];
+        $words = $_POST['words'];
+        $correct = $_POST['correct'];
+        $incorrect = $_POST['incorrect'];
 
         require_once __DIR__ . '/../models/TextModel.php';
         $text = TextModel::getText($textId);
 
         $errors = $text["length"] - $words - $correct;
-        $speed = $text["length"] / $time / 5 * 60;
+        $speed = ($words + $correct + $incorrect) / $time / 5 * 60;
 
-        // require_once __DIR__ . '/../models/ResultModel.php';
-        // ResultModel::saveResult($textId, $speed, $errors);
+        session_start();
+        if (isset($_SESSION['user'])) {
+            require_once __DIR__ . '/../models/ResultModel.php';
+            ResultModel::saveResult($_SESSION['user'], $textId, $speed, $errors);
+        }
+    }
+    else {
+        header('Location: /trainer');
     }
 ?>
 

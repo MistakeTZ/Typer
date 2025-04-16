@@ -28,7 +28,7 @@
                 if ($check) {
                     session_start();
 
-                    $_SESSION['user'] = $user;
+                    $_SESSION['user'] = $check;
                     header('Location: /');
                 }
                 else {

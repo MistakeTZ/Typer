@@ -2,9 +2,10 @@ let currentWordIndex = 0;
 let currentCharIndex = 0;
 let timer = null;
 
-function onTypingComplete(time, correct) {
+function onTypingComplete(time, correct, incorrect) {
     document.getElementById('time').value = time;
     document.getElementById('correct').value = correct;
+    document.getElementById('incorrect').value = incorrect;
     document.getElementById('resultForm').submit();
 }
 
@@ -79,7 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (currentWordIndex === originalText.length - 1) {
                         const time = (Date.now() - timer) / 1000;
                         const correct = text.querySelectorAll('.correct').length;
-                        onTypingComplete(time, correct);
+                        const incorrect = text.querySelectorAll('.incorrect').length;
+                        onTypingComplete(time, correct, incorrect);
                         return;
                     }
 

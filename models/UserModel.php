@@ -21,7 +21,9 @@
 
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
-                return password_verify($password, $row['pass_hash']);
+                if (password_verify($password, $row['pass_hash'])) {
+                    return $row['id'];
+                }
             }
             return false;
         }
